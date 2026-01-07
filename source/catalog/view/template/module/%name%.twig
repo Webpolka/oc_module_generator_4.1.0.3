@@ -1,0 +1,13 @@
+<div class="instance-%name%">
+	<h3>Экземпляр c ID: {{ id }} </br>
+		Имя: {{ name }}
+	</h3>
+
+	{% for item in items %}
+		<h3>{{ item.title }}</h3>
+		<div>{{ item.content }}</div>
+	{% else %}
+		<p>Пока нет элементов</p>
+	{% endfor %}
+
+</div>

@@ -1,0 +1,97 @@
+{{ header }}{{ column_left }}
+
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="mb-3">
+				<label class="form-label">{{ instance_title }}
+					{{ name }}</label>
+				<input type="text" name="name" value="{{ name }}" class="form-control" id="instance-name">
+				<button type="button" id="rename_instance" class="btn btn-primary mt-2">
+					{{ button_rename }}
+				</button>
+                
+				<button type="button" id="delete_instance" class="btn btn-danger mt-2 ms-2">
+					{{ button_delete }}
+				</button>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="alert alert-success">
+			{{ instance_title }}
+			<strong>{{ name }}</strong>
+			!
+		</div>
+	</div>
+</div>
+
+{{ footer }}
+
+{# SCRIPTS #}
+ <script>
+	function renameInstance() {
+		const name = $('#instance-name').val();
+
+		$.ajax({
+			url: '{{ action_rename }}',
+			type: 'post',
+			data: {
+				module_id: '{{ module_id }}',
+				name: name
+			},
+			dataType: 'json',
+			success: function (json) {
+				if (json.success) {
+					location.reload();
+				} else if (json.error) {
+					alert(json.error);
+				}
+			}
+		});
+	}
+
+	// Кнопка
+	$('#rename_instance').on('click', function () {
+		renameInstance();
+	});
+
+	// Enter в инпуте
+	$('#instance-name').on('keydown', function (e) {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			renameInstance();
+		}
+	});
+
+    // Удаление екземпляра
+    function deleteInstance() {
+		if (!confirm('Вы уверены, что хотите удалить этот экземпляр?')) {
+			return;
+		}
+
+		$.ajax({
+			url: '{{ action_delete }}',
+			type: 'post',
+			data: {
+				module_id: '{{ module_id }}'
+			},
+			dataType: 'json',
+			success: function (json) {
+				if (json.success) {
+					// после удаления — уходим в список модулей
+					location.href = '{{ modules_url }}';
+				} else if (json.error) {
+					alert(json.error);
+				}
+			}
+		});
+	}
+
+    // Клик по кнопке удалени екземпляра
+	$('#delete_instance').on('click', function () {
+		deleteInstance();
+	});
+</script>

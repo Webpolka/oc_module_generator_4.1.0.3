@@ -1,0 +1,8 @@
+{
+  "name": "%ModuleName% module for Opencart 4.1.0.3 Jan 2026",
+  "version": "1.0.0",
+  "author": "Weblegko",
+  "type": "module",  
+  "code": "%name%",
+  "link": "https://wtemu.ru"
+}
