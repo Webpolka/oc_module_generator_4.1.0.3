@@ -5,9 +5,9 @@ namespace Opencart\Catalog\Model\Extension\%ModuleName%\Module;
 class %ModuleName% extends \Opencart\System\Engine\Model
 {
     /**
-     * Получение аккордеонов
+     * Получение елементов одного екземпляра
      *
-     * @param int|null $module_id Если указан, возвращает аккордеоны только этого модуля
+     * @param int|null $module_id Если указан, возвращает елементы только этого екземпляра
      * @return array
      */
     public function getItems(?int $module_id = null): array

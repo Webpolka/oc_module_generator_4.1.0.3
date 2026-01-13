@@ -68,7 +68,7 @@ class %ModuleName% extends \Opencart\System\Engine\Controller
     }
 
     /**
-     * Список аккордеонов
+     * Исполняемый метод контроллера
      */
     public function index(): void
     {
@@ -164,7 +164,7 @@ class %ModuleName% extends \Opencart\System\Engine\Controller
             $post = [
                 'name'      => $this->request->post['name'] ?? '%ModuleName%',
                 'status'    => $this->request->post['status'] ?? 1,
-                'module_id' => $module_id // КРИТИЧЕСКИ ВАЖНО
+                'module_id' => $module_id 
             ];
 
             $this->model_setting_module->editModule($module_id, $post);
@@ -177,8 +177,6 @@ class %ModuleName% extends \Opencart\System\Engine\Controller
     $this->response->addHeader('Content-Type: application/json');
     $this->response->setOutput(json_encode($json));
 }
-
-
 
 
     /**
